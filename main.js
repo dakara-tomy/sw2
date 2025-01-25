@@ -132,6 +132,13 @@ function updateContent() {
         link.innerHTML = translations[currentLanguage].nav[key];
     });
 
+    // フッターリンクの更新
+    const footerLinks = document.querySelectorAll('.footer-links a');
+    footerLinks.forEach(link => {
+        const key = link.getAttribute('href').replace('#', '');
+        link.innerHTML = translations[currentLanguage].nav[key];
+    });
+
     // ヒーローセクションの更新
     document.querySelector('#hero h1').textContent = 
         translations[currentLanguage].title;
