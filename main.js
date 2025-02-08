@@ -5,7 +5,8 @@ const tourSpots = [
         nameEn: 'Sensoji Temple',
         description: '東京都内最古の寺院',
         descriptionEn: 'Tokyo\'s oldest Buddhist temple',
-        image: './images/sensoji.webp'
+        image: './images/sensoji.webp',
+        link: 'asakusa.html'
     },
     {
         name: '渋谷スクランブル交差点',
@@ -49,7 +50,7 @@ const translations = {
     ja: {
         title: '東京の魅力を発見しよう',
         subtitle: '伝統と現代が調和する街',
-        spotsTitle: '人気の観光スポット',
+        spotsTitle: '秘密の場所',
         switchLang: '<span class="material-icons">language</span> English',
         nav: {
             spots: '<span class="material-icons">place</span> 観光スポット',
@@ -80,7 +81,7 @@ const translations = {
     en: {
         title: 'Discover the Magic of Tokyo',
         subtitle: 'Where Tradition Meets Modern',
-        spotsTitle: 'Popular Tourist Spots',
+        spotsTitle: 'Secret Spots',
         switchLang: '<span class="material-icons">language</span> 日本語',
         nav: {
             spots: '<span class="material-icons">place</span> Spots',
@@ -90,7 +91,7 @@ const translations = {
         },
         about: {
             title: 'WHAT IS HIDDEN THINGS TOUR GUIDE?',
-            description: 'We are tour guides specializing in introducing hidden cultures and customs of Japan that are not often introduced in regular tours. We will take you on a journey to learn more about Japan with a special tour customized for you.'
+            description: 'We are specialized tour guides introducing hidden cultures and customs of Japan that are not often featured in regular tours. We offer customized special tours to take you on a journey to learn more about Japan.'
         },
         contact: {
             title: 'Contact Us',
@@ -116,6 +117,7 @@ let currentLanguage = 'ja';
 // 言語切り替え関数
 function toggleLanguage() {
     currentLanguage = currentLanguage === 'ja' ? 'en' : 'ja';
+    localStorage.setItem('language', currentLanguage); // 言語設定を保存
     updateContent();
 }
 
@@ -125,6 +127,14 @@ function updateContent() {
     document.querySelector('.language-switch button').innerHTML = 
         translations[currentLanguage].switchLang;
     
+    // 日本語と英語の表示切り替え
+    document.querySelectorAll('.ja').forEach(el => {
+        el.style.display = currentLanguage === 'ja' ? 'block' : 'none';
+    });
+    document.querySelectorAll('.en').forEach(el => {
+        el.style.display = currentLanguage === 'en' ? 'block' : 'none';
+    });
+
     // ナビゲーションリンクの更新
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
@@ -140,73 +150,98 @@ function updateContent() {
     });
 
     // ヒーローセクションの更新
-    document.querySelector('#hero h1').textContent = 
-        translations[currentLanguage].title;
-    document.querySelector('#hero p').textContent = 
-        translations[currentLanguage].subtitle;
+    const heroTitle = document.querySelector('#hero h1');
+    if (heroTitle) {
+        heroTitle.textContent = translations[currentLanguage].title;
+    }
+    const heroSubtitle = document.querySelector('#hero p');
+    if (heroSubtitle) {
+        heroSubtitle.textContent = translations[currentLanguage].subtitle;
+    }
     
     // セクションタイトルの更新
-    document.querySelector('#spots h2').textContent = 
-        translations[currentLanguage].spotsTitle;
+    const spotsTitle = document.querySelector('#spots h2');
+    if (spotsTitle) {
+        spotsTitle.textContent = translations[currentLanguage].spotsTitle;
+    }
 
     // スポットカードの更新
     const spotsGrid = document.querySelector('.spots-grid');
-    spotsGrid.innerHTML = '';
-    
-    tourSpots.forEach(spot => {
-        const card = document.createElement('div');
-        card.className = 'spot-card';
-        card.innerHTML = `
-            <img src="${spot.image}" alt="${currentLanguage === 'ja' ? spot.name : spot.nameEn}">
-            <h3>${currentLanguage === 'ja' ? spot.name : spot.nameEn}</h3>
-            <p>${currentLanguage === 'ja' ? spot.description : spot.descriptionEn}</p>
-        `;
-        spotsGrid.appendChild(card);
-    });
+    if (spotsGrid) {
+        spotsGrid.innerHTML = '';
+        tourSpots.forEach(spot => {
+            const card = document.createElement('div');
+            card.className = 'spot-card';
+            card.innerHTML = `
+                <a href="${spot.link}">
+                    <img src="${spot.image}" alt="${currentLanguage === 'ja' ? spot.name : spot.nameEn}">
+                    <h3>${currentLanguage === 'ja' ? spot.name : spot.nameEn}</h3>
+                    <p>${currentLanguage === 'ja' ? spot.description : spot.descriptionEn}</p>
+                </a>
+            `;
+            spotsGrid.appendChild(card);
+        });
+    }
 
     // アバウトセクションの更新
-    document.querySelector('#about .section-title .en').textContent = 
-        translations[currentLanguage].about.title;
-    document.querySelector('#about .section-title .ja').style.display = 
-        currentLanguage === 'ja' ? 'block' : 'none';
-    document.querySelector('#about .section-title .en').style.display = 
-        currentLanguage === 'en' ? 'block' : 'none';
-    document.querySelector('#about .about-text').textContent = 
-        translations[currentLanguage].about.description;
+    const aboutTitleEn = document.querySelector('#about .section-title .en');
+    const aboutTitleJa = document.querySelector('#about .section-title .ja');
+    if (aboutTitleEn && aboutTitleJa) {
+        aboutTitleEn.textContent = translations[currentLanguage].about.title;
+        aboutTitleJa.style.display = currentLanguage === 'ja' ? 'block' : 'none';
+        aboutTitleEn.style.display = currentLanguage === 'en' ? 'block' : 'none';
+    }
+    const aboutText = document.querySelector('#about .about-text');
+    if (aboutText) {
+        aboutText.textContent = translations[currentLanguage].about.description;
+    }
 
     // コンタクトセクションの更新
-    document.querySelector('#contact .section-title .en').textContent = 
-        translations[currentLanguage].contact.title;
-    document.querySelector('#contact .section-title .ja').style.display = 
-        currentLanguage === 'ja' ? 'block' : 'none';
-    document.querySelector('#contact .section-title .en').style.display = 
-        currentLanguage === 'en' ? 'block' : 'none';
+    const contactTitleEn = document.querySelector('#contact .section-title .en');
+    const contactTitleJa = document.querySelector('#contact .section-title .ja');
+    if (contactTitleEn && contactTitleJa) {
+        contactTitleEn.textContent = translations[currentLanguage].contact.title;
+        contactTitleJa.style.display = currentLanguage === 'ja' ? 'block' : 'none';
+        contactTitleEn.style.display = currentLanguage === 'en' ? 'block' : 'none';
+    }
     
     // フォームセクションのタイトル更新
-    document.querySelector('.contact-method.email h3 .en').style.display = 
-        currentLanguage === 'en' ? 'block' : 'none';
-    document.querySelector('.contact-method.email h3 .ja').style.display = 
-        currentLanguage === 'ja' ? 'block' : 'none';
+    const emailTitleEn = document.querySelector('.contact-method.email h3 .en');
+    const emailTitleJa = document.querySelector('.contact-method.email h3 .ja');
+    if (emailTitleEn && emailTitleJa) {
+        emailTitleEn.style.display = currentLanguage === 'en' ? 'block' : 'none';
+        emailTitleJa.style.display = currentLanguage === 'ja' ? 'block' : 'none';
+    }
     
     // Instagramセクションのタイトルと説明文の更新
-    document.querySelector('.contact-method.instagram h3 .en').style.display = 
-        currentLanguage === 'en' ? 'block' : 'none';
-    document.querySelector('.contact-method.instagram h3 .ja').style.display = 
-        currentLanguage === 'ja' ? 'block' : 'none';
-    document.querySelector('.instagram-text .en').style.display = 
-        currentLanguage === 'en' ? 'block' : 'none';
-    document.querySelector('.instagram-text .ja').style.display = 
-        currentLanguage === 'ja' ? 'block' : 'none';
+    const instagramTitleEn = document.querySelector('.contact-method.instagram h3 .en');
+    const instagramTitleJa = document.querySelector('.contact-method.instagram h3 .ja');
+    const instagramTextEn = document.querySelector('.instagram-text .en');
+    const instagramTextJa = document.querySelector('.instagram-text .ja');
+    if (instagramTitleEn && instagramTitleJa && instagramTextEn && instagramTextJa) {
+        instagramTitleEn.style.display = currentLanguage === 'en' ? 'block' : 'none';
+        instagramTitleJa.style.display = currentLanguage === 'ja' ? 'block' : 'none';
+        instagramTextEn.style.display = currentLanguage === 'en' ? 'block' : 'none';
+        instagramTextJa.style.display = currentLanguage === 'ja' ? 'block' : 'none';
+    }
     
     // フォームラベルの更新
-    document.querySelector('label[for="name"] .content-name').textContent = 
-        translations[currentLanguage].contact.name;
-    document.querySelector('label[for="email"] .content-name').textContent = 
-        translations[currentLanguage].contact.email;
-    document.querySelector('label[for="message"] .content-name').textContent = 
-        translations[currentLanguage].contact.message;
-    document.querySelector('.submit-btn').textContent = 
-        translations[currentLanguage].contact.submit;
+    const nameLabel = document.querySelector('label[for="name"] .content-name');
+    const emailLabel = document.querySelector('label[for="email"] .content-name');
+    const messageLabel = document.querySelector('label[for="message"] .content-name');
+    const submitBtn = document.querySelector('.submit-btn');
+    if (nameLabel) {
+        nameLabel.textContent = translations[currentLanguage].contact.name;
+    }
+    if (emailLabel) {
+        emailLabel.textContent = translations[currentLanguage].contact.email;
+    }
+    if (messageLabel) {
+        messageLabel.textContent = translations[currentLanguage].contact.message;
+    }
+    if (submitBtn) {
+        submitBtn.textContent = translations[currentLanguage].contact.submit;
+    }
 
     // フッターの言語切り替え
     document.querySelectorAll('.footer-description .ja, .footer-title .ja').forEach(el => {
@@ -215,11 +250,21 @@ function updateContent() {
     document.querySelectorAll('.footer-description .en, .footer-title .en').forEach(el => {
         el.style.display = currentLanguage === 'en' ? 'block' : 'none';
     });
+
+    // Note埋め込みの表示切り替え
+    document.querySelectorAll('.note-embed.ja').forEach(el => {
+        el.style.display = currentLanguage === 'ja' ? 'block' : 'none';
+    });
+    document.querySelectorAll('.note-embed.en').forEach(el => {
+        el.style.display = currentLanguage === 'en' ? 'block' : 'none';
+    });
 }
 
 // 初期表示
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', (event) => {
+    currentLanguage = localStorage.getItem('language') || 'ja'; // 保存された言語設定を取得
     updateContent();
+    fetchMediumRSS(); // MediumのRSSのみを残す
 
     // モバイルナビゲーションの設定
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
@@ -253,3 +298,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+function openModal(spot) {
+    document.getElementById('spot-title').textContent = spot.name;
+    document.getElementById('spot-image').src = spot.image;
+    document.getElementById('spot-description').textContent = spot.description;
+    document.getElementById('spot-detail-modal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('spot-detail-modal').style.display = 'none';
+}
+
+function fetchMediumRSS() {
+    // MediumのユーザーフィードのURLを設定
+    const rssUrl = 'https://cors-anywhere.herokuapp.com/https://medium.com/feed/@hiddenthingstourtokyo';
+    fetch(rssUrl)
+        .then(response => response.text())
+        .then(data => {
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(data, 'application/xml');
+            const items = xml.querySelectorAll('item');
+            if (items.length > 0) {
+                const latestItem = items[0];
+                const title = latestItem.querySelector('title').textContent;
+                const link = latestItem.querySelector('link').textContent;
+
+                const container = document.querySelector('.medium-article');
+                if (container) {
+                    container.innerHTML = `
+                        <a href="${link}" target="_blank">${title}</a>
+                    `;
+                }
+            } else {
+                console.error('No items found in Medium RSS feed.');
+            }
+        })
+        .catch(error => console.error('Error fetching Medium RSS:', error));
+}
+
+function displayBlogPosts() {
+    const posts = [
+        {
+            title: '東京の隠れた魅力',
+            content: '東京にはまだまだ知られていない魅力がたくさんあります。今回はその一部を紹介します。',
+            image: './images/tokyo-hidden.jpg',
+            link: '#'
+        },
+        {
+            title: '浅草の歴史を探る',
+            content: '浅草は東京の中でも特に歴史の深い場所です。今回はその歴史を探ってみましょう。',
+            image: './images/asakusa-history.jpg',
+            link: '#'
+        }
+        // 他のブログ記事を追加
+    ];
+
+    const container = document.querySelector('.note-article');
+    if (container) {
+        container.innerHTML = ''; // 既存の内容をクリア
+        posts.forEach(post => {
+            container.innerHTML += `
+                <div class="blog-post">
+                    <a href="${post.link}" target="_blank" style="text-decoration: none; color: inherit;">
+                        <img src="${post.image}" alt="${post.title}" style="width:100%; height:auto; display: block; margin-bottom: 10px;">
+                        <h3 style="margin: 0; font-size: 1.5em;">${post.title}</h3>
+                        <p>${post.content}</p>
+                    </a>
+                </div>
+            `;
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayBlogPosts();
+});
+
+// 他の関数...
