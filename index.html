@@ -8,30 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-    <div class="background-gradient"></div>
-    <header class="fade-in">
-        <nav>
-            <div class="logo">Hidden Things Tour Tokyo</div>
-            <div class="nav-controls">
-                <button class="mobile-nav-toggle" aria-controls="nav-links" aria-expanded="false">
-                    <span class="material-icons">menu</span>
+<header class="fade-in">
+    <nav>
+        <div class="logo">Hidden Things Tour Tokyo</div>
+        <div class="nav-controls">
+            <button class="mobile-nav-toggle" aria-controls="nav-links" aria-expanded="false">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html"><span class="ja">ホーム</span><span class="en" style="display: none;">Home</span></a></li>
+            <li><a href="#about"><span class="ja">アバウト</span><span class="en" style="display: none;">About</span></a></li>
+            <li><a href="#service-section"><span class="ja">サービス</span><span class="en" style="display: none;">Service</span></a></li>
+            <li><a href="#plans"><span class="ja">プラン</span><span class="en" style="display: none;">Plan</span></a></li>
+            <li><a href="booking.html"><span class="ja">ブッキング</span><span class="en" style="display: none;">Booking</span></a></li>
+            <li class="language-switch">
+                <button onclick="toggleLanguage()">
+                    <span class="material-icons">language</span> English
                 </button>
-                <div class="language-switch">
-                    <button onclick="toggleLanguage()">
-                        <span class="material-icons">language</span> English
-                    </button>
-                </div>
-            </div>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html"><span class="ja">ホーム</span><span class="en" style="display: none;">Home</span></a></li>
-                <li><a href="#about"><span class="ja">アバウト</span><span class="en" style="display: none;">About</span></a></li>
-                <li><a href="#service-section"><span class="ja">サービス</span><span class="en" style="display: none;">Service</span></a></li>
-                <li><a href="#plans"><span class="ja">プラン</span><span class="en" style="display: none;">Plan</span></a></li>
-                <li><a href="booking.html"><span class="ja">ブッキング</span><span class="en" style="display: none;">Booking</span></a></li>
-            </ul>
-        </nav>
-    </header>
+            </li>
+        </ul>
+    </nav>
+</header>
 
     <main>
         <section id="hero" class="slide-in-up">
@@ -201,7 +199,7 @@
                     <span class="en">Discover hidden gems of Japan with our special tours</span>
                 </p>
             </div>
-
+    
             <div class="footer-section">
                 <h3 class="footer-title">
                     <span class="ja">サイトマップ</span>
@@ -209,13 +207,13 @@
                 </h3>
                 <ul class="footer-links">
                     <li><a href="index.html"><span class="ja">ホーム</span><span class="en" style="display: none;">Home</span></a></li>
-                    <li><a href="#about"><span class="ja">アバウト</span><span class="en" style="display: none;">About</span></a></li>
-                    <li><a href="#service-section"><span class="ja">サービス</span><span class="en" style="display: none;">Service</span></a></li>
-                    <li><a href="#plans"><span class="ja">プラン</span><span class="en" style="display: none;">Plan</span></a></li>
+                    <li><a href="index.html#about"><span class="ja">アバウト</span><span class="en" style="display: none;">About</span></a></li>
+                    <li><a href="index.html#service-section"><span class="ja">サービス</span><span class="en" style="display: none;">Service</span></a></li>
+                    <li><a href="plan.html"><span class="ja">プラン</span><span class="en" style="display: none;">Plan</span></a></li>
                     <li><a href="booking.html"><span class="ja">ブッキング</span><span class="en" style="display: none;">Booking</span></a></li>
                 </ul>
             </div>
-
+    
             <div class="footer-section">
                 <h3 class="footer-title">
                     <span class="ja">フォローする</span>

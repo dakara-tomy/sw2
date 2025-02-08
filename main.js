@@ -284,7 +284,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // モバイルナビゲーションの設定
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const navLinks = document.querySelector('.nav-links');
-    const header = document.querySelector('header');
     const body = document.body;
 
     mobileNavToggle.addEventListener('click', () => {
@@ -296,19 +295,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const icon = mobileNavToggle.querySelector('.material-icons');
         icon.textContent = isExpanded ? 'menu' : 'close';
         
-        // ヘッダーとボディの状態を更新
-        header.classList.toggle('nav-open');
+        // ボディの状態を更新
         body.classList.toggle('nav-open');
     });
 
     // ナビゲーションリンクをクリックしたらメニューを閉じる
-    navLinks.querySelectorAll('a').forEach(link => {
+    navLinks.querySelectorAll('a, .language-switch button').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
             mobileNavToggle.setAttribute('aria-expanded', 'false');
             const icon = mobileNavToggle.querySelector('.material-icons');
             icon.textContent = 'menu';
-            header.classList.remove('nav-open');
             body.classList.remove('nav-open');
         });
     });
@@ -344,6 +341,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     window.addEventListener('scroll', () => {
         handleScrollAnimation();
+    });
+
+    // フッターのリンクを操作している部分がある場合
+    const footerLinks = document.querySelectorAll('.footer-links li a');
+
+    footerLinks.forEach(link => {
+        const jaText = link.querySelector('.ja');
+        const enText = link.querySelector('.en');
+
+        // 言語切り替えのロジックがある場合
+        if (jaText && enText) {
+            // ここでテキストを正しく設定
+            jaText.textContent = jaText.textContent.trim();
+            enText.textContent = enText.textContent.trim();
+        }
     });
 });
 
