@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="background-gradient"></div>
-    <header>
+    <header class="fade-in">
         <nav>
             <div class="logo">Hidden Things Tour Tokyo</div>
             <div class="nav-controls">
@@ -24,21 +24,22 @@
                 </div>
             </div>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#spots"><span class="material-icons">place</span> 観光スポット</a></li>
-                <li><a href="#food"><span class="material-icons">restaurant</span> グルメ</a></li>
-                <li><a href="#culture"><span class="material-icons">temple_buddhist</span> 文化体験</a></li>
-                <li><a href="#contact"><span class="material-icons">email</span> お問い合わせ</a></li>
+                <li><a href="index.html"><span class="ja">ホーム</span><span class="en" style="display: none;">Home</span></a></li>
+                <li><a href="#about"><span class="ja">アバウト</span><span class="en" style="display: none;">About</span></a></li>
+                <li><a href="#service-section"><span class="ja">サービス</span><span class="en" style="display: none;">Service</span></a></li>
+                <li><a href="#plans"><span class="ja">プラン</span><span class="en" style="display: none;">Plan</span></a></li>
+                <li><a href="booking.html"><span class="ja">ブッキング</span><span class="en" style="display: none;">Booking</span></a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="hero">
+        <section id="hero" class="slide-in-up">
             <h1>東京の魅力を発見しよう</h1>
             <p>Discover the Magic of Tokyo</p>
         </section>
 
-        <section id="about">
+        <section id="about" class="fade-in scroll-fade-in-up">
             <div class="about-container">
                 <h2 class="section-title">
                     <span class="en">WHAT IS HIDDEN THINGS TOUR GUIDE?</span>
@@ -55,13 +56,84 @@
             </div>
         </section>
 
-        <div id="secret-location-section">
+        <section id="plans" class="scroll-fade-in-up">
+            <div class="plans-container">
+                <h2 class="section-title">
+                    <span class="en">Our Plans</span>
+                    <span class="ja">私たちのプラン</span>
+                </h2>
+                <table class="plans-table">
+                    <thead>
+                        <tr>
+                            <th><span class="ja">コース</span><span class="en" style="display: none;">Course</span></th>
+                            <th><span class="ja">1人</span><span class="en" style="display: none;">1 Person</span></th>
+                            <th><span class="ja">2人</span><span class="en" style="display: none;">2 People</span></th>
+                            <th><span class="ja">3人</span><span class="en" style="display: none;">3 People</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="ja">2時間コース</span><span class="en" style="display: none;">2-hour Course</span></td>
+                            <td>¥5,000</td>
+                            <td>¥9,000</td>
+                            <td>¥12,000</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ja">4時間コース</span><span class="en" style="display: none;">4-hour Course</span></td>
+                            <td>¥9,000</td>
+                            <td>¥16,000</td>
+                            <td>¥21,000</td>
+                        </tr>
+                        <tr>
+                            <td><span class="ja">6時間コース</span><span class="en" style="display: none;">6-hour Course</span></td>
+                            <td>¥12,000</td>
+                            <td>¥21,000</td>
+                            <td>¥30,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div id="service-section" class="scroll-fade-in-up">
             <h2>
-                <span class="ja">秘密の場所</span>
-                <span class="en" style="display: none;">Secret Spots</span>
+                <span class="ja">サービス</span>
+                <span class="en" style="display: none;">Service</span>
             </h2>
-            <div id="secret-posts" class="note-article">
-                <!-- ブログコンテンツがここに表示されます -->
+            <div id="secret-posts" class="note-article spots-grid">
+                <!-- 各サービスのカード -->
+                <div class="spot-card">
+                    <a href="asakusa.html">
+                        <img src="./images/sensoji.webp" alt="浅草寺">
+                        <h3>浅草寺</h3>
+                        <p>東京都内最古の寺院</p>
+                    </a>
+                </div>
+                <div class="spot-card">
+                    <img src="./images/shibuya.jpg" alt="渋谷スクランブル交差点">
+                    <h3>渋谷スクランブル交差点</h3>
+                    <p>世界一忙しい交差点</p>
+                </div>
+                <div class="spot-card">
+                    <img src="./images/skytree.jpg" alt="東京スカイツリー">
+                    <h3>東京スカイツリー</h3>
+                    <p>世界一高い電波塔からの絶景</p>
+                </div>
+                <div class="spot-card">
+                    <img src="./images/meiji.jpg" alt="明治神宮">
+                    <h3>明治神宮</h3>
+                    <p>都会の中の荘厳な森と神社</p>
+                </div>
+                <div class="spot-card">
+                    <img src="./images/tsukiji.jpg" alt="築地市場">
+                    <h3>築地市場</h3>
+                    <p>新鮮な海鮮と活気ある市場</p>
+                </div>
+                <div class="spot-card">
+                    <img src="./images/ueno.jpg" alt="上野公園">
+                    <h3>上野公園</h3>
+                    <p>文化施設が集まる都市公園</p>
+                </div>
             </div>
         </div>
 
@@ -136,10 +208,11 @@
                     <span class="en">Site Map</span>
                 </h3>
                 <ul class="footer-links">
-                    <li><a href="#spots"><span class="material-icons">place</span> 観光スポット</a></li>
-                    <li><a href="#food"><span class="material-icons">restaurant</span> グルメ</a></li>
-                    <li><a href="#culture"><span class="material-icons">temple_buddhist</span> 文化体験</a></li>
-                    <li><a href="#contact"><span class="material-icons">email</span> お問い合わせ</a></li>
+                    <li><a href="index.html"><span class="ja">ホーム</span><span class="en" style="display: none;">Home</span></a></li>
+                    <li><a href="#about"><span class="ja">アバウト</span><span class="en" style="display: none;">About</span></a></li>
+                    <li><a href="#service-section"><span class="ja">サービス</span><span class="en" style="display: none;">Service</span></a></li>
+                    <li><a href="#plans"><span class="ja">プラン</span><span class="en" style="display: none;">Plan</span></a></li>
+                    <li><a href="booking.html"><span class="ja">ブッキング</span><span class="en" style="display: none;">Booking</span></a></li>
                 </ul>
             </div>
 

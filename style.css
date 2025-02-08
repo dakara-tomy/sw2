@@ -422,7 +422,8 @@ footer {
 
 #about {
     padding: 6rem 2rem;
-    background: var(--glass-bg);
+    background: var(--glass-bg) url('images/jpn03_a4.svg') no-repeat center center;
+    background-size: cover;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-top: 1px solid var(--glass-border);
@@ -722,8 +723,20 @@ footer {
     border-radius: 8px;
 }
 
-#secret-location-section {
-    display: block; /* もしくは適切なスタイルに修正 */
+#service-section {
+    padding: 6rem 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+#service-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    color: var(--text-primary);
 }
 
 .blog-post {
@@ -755,4 +768,285 @@ footer {
 .blog-post p {
     margin: 10px;
     color: var(--text-secondary);
+}
+
+.material-icons.info {
+    color: var(--accent-color);
+}
+
+#plans {
+    padding: 6rem 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.plans-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.plans-container .section-title {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.plans-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.plan {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 30px var(--glass-shadow);
+    transition: all 0.3s ease;
+}
+
+.plan:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+.plan h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.plan p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.plans-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+.plans-table th, .plans-table td {
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.plans-table th {
+    background: var(--bg-secondary);
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.plans-table tr:nth-child(even) {
+    background: var(--glass-bg);
+}
+
+.plans-table tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.slide-in-up {
+    animation: slideInUp 1s ease-out forwards;
+}
+
+/* 新しいアニメーションの定義 */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* アニメーションを適用するクラス */
+.scroll-fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.example-container {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 30px var(--glass-shadow);
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.example-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.example-content p {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.example-content ul {
+    list-style-type: disc;
+    padding-left: 40px;
+    text-align: left;
+    margin: 0;
+}
+
+.example-content ul li {
+    margin-bottom: 0.5rem;
+}
+
+.example-image {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.booking-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 3rem 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px var(--glass-shadow);
+    text-align: center;
+}
+
+.booking-container .section-title {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.booking-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.booking-form .form-group {
+    position: relative;
+    padding: 15px 0 0;
+}
+
+.booking-form input, 
+.booking-form select {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--glass-border);
+    background: transparent;
+    padding: 15px 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    transition: border-color 0.3s;
+}
+
+.booking-form label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+    outline: none;
+    border-bottom-color: var(--accent-color);
+}
+
+.booking-form input:focus ~ label,
+.booking-form select:focus ~ label,
+.booking-form input:valid ~ label,
+.booking-form select:valid ~ label {
+    top: -10px;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+}
+
+.submit-btn {
+    background: var(--glass-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 4px;
+    margin-top: 1rem;
+    align-self: center;
+}
+
+.submit-btn:hover {
+    background: var(--accent-color);
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+main {
+    margin-top: 6rem; /* ナビゲーションとメインコンテンツの間にスペースを追加 */
 }

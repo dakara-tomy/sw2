@@ -53,10 +53,11 @@ const translations = {
         spotsTitle: '秘密の場所',
         switchLang: '<span class="material-icons">language</span> English',
         nav: {
-            spots: '<span class="material-icons">place</span> 観光スポット',
-            food: '<span class="material-icons">restaurant</span> グルメ',
+            about: '<span class="material-icons">info</span> アバウト',
+            plans: '<span class="material-icons">event</span> プラン',
+            secret: '<span class="material-icons">place</span> スポット',
             culture: '<span class="material-icons">temple_buddhist</span> 文化体験',
-            contact: '<span class="material-icons">email</span> お問い合わせ'
+            booking: '<span class="material-icons">book_online</span> 予約'
         },
         about: {
             title: 'HIDDEN THINGS TOUR TOKYOとは？',
@@ -84,10 +85,11 @@ const translations = {
         spotsTitle: 'Secret Spots',
         switchLang: '<span class="material-icons">language</span> 日本語',
         nav: {
-            spots: '<span class="material-icons">place</span> Spots',
-            food: '<span class="material-icons">restaurant</span> Food',
+            about: '<span class="material-icons">info</span> About',
+            plans: '<span class="material-icons">event</span> Plans',
+            secret: '<span class="material-icons">place</span> Secret Spots',
             culture: '<span class="material-icons">temple_buddhist</span> Culture',
-            contact: '<span class="material-icons">email</span> Contact'
+            booking: '<span class="material-icons">book_online</span> Contact'
         },
         about: {
             title: 'WHAT IS HIDDEN THINGS TOUR GUIDE?',
@@ -139,14 +141,27 @@ function updateContent() {
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
         const key = link.getAttribute('href').replace('#', '');
-        link.innerHTML = translations[currentLanguage].nav[key];
+        if (key === 'plans') {
+            link.setAttribute('href', 'plan.html'); // プランのリンクをplan.htmlに設定
+        }
+        link.innerHTML = translations[currentLanguage].nav[key] || link.innerHTML;
     });
 
     // フッターリンクの更新
     const footerLinks = document.querySelectorAll('.footer-links a');
     footerLinks.forEach(link => {
         const key = link.getAttribute('href').replace('#', '');
+        if (key === 'plans') {
+            link.setAttribute('href', 'plan.html'); // プランのリンクをplan.htmlに設定
+        }
         link.innerHTML = translations[currentLanguage].nav[key];
+    });
+
+    // ここでundefinedを秘密の場所に変更
+    document.querySelectorAll('.nav-links a, .footer-links a').forEach(link => {
+        if (link.textContent.includes('undefined')) {
+            link.innerHTML = translations[currentLanguage].nav.secret;
+        }
     });
 
     // ヒーローセクションの更新
@@ -297,6 +312,39 @@ document.addEventListener('DOMContentLoaded', (event) => {
             body.classList.remove('nav-open');
         });
     });
+
+    // スクロールイベントでアニメーションを適用
+    const scrollElements = document.querySelectorAll('.scroll-fade-in-up');
+
+    const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return (
+            elementTop <=
+            (window.innerHeight || document.documentElement.clientHeight) / dividend
+        );
+    };
+
+    const displayScrollElement = (element) => {
+        element.classList.add('visible');
+    };
+
+    const hideScrollElement = (element) => {
+        element.classList.remove('visible');
+    };
+
+    const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+            if (elementInView(el, 1.25)) {
+                displayScrollElement(el);
+            } else {
+                hideScrollElement(el);
+            }
+        });
+    };
+
+    window.addEventListener('scroll', () => {
+        handleScrollAnimation();
+    });
 });
 
 function openModal(spot) {
@@ -336,43 +384,5 @@ function fetchMediumRSS() {
         })
         .catch(error => console.error('Error fetching Medium RSS:', error));
 }
-
-function displayBlogPosts() {
-    const posts = [
-        {
-            title: '東京の隠れた魅力',
-            content: '東京にはまだまだ知られていない魅力がたくさんあります。今回はその一部を紹介します。',
-            image: './images/tokyo-hidden.jpg',
-            link: '#'
-        },
-        {
-            title: '浅草の歴史を探る',
-            content: '浅草は東京の中でも特に歴史の深い場所です。今回はその歴史を探ってみましょう。',
-            image: './images/asakusa-history.jpg',
-            link: '#'
-        }
-        // 他のブログ記事を追加
-    ];
-
-    const container = document.querySelector('.note-article');
-    if (container) {
-        container.innerHTML = ''; // 既存の内容をクリア
-        posts.forEach(post => {
-            container.innerHTML += `
-                <div class="blog-post">
-                    <a href="${post.link}" target="_blank" style="text-decoration: none; color: inherit;">
-                        <img src="${post.image}" alt="${post.title}" style="width:100%; height:auto; display: block; margin-bottom: 10px;">
-                        <h3 style="margin: 0; font-size: 1.5em;">${post.title}</h3>
-                        <p>${post.content}</p>
-                    </a>
-                </div>
-            `;
-        });
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    displayBlogPosts();
-});
 
 // 他の関数...
